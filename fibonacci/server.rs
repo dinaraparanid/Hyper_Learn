@@ -39,6 +39,7 @@ impl HttpFibonacciServer {
             .await?)
     }
 
+    #[inline]
     async fn handle(&mut self, req: Request<Body>) -> Result<Response<Body>, Infallible> {
         let fib = self.get_fibonacci(
             String::from_utf8(req.into_body().data().await.unwrap().unwrap().to_vec())
