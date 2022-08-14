@@ -17,55 +17,6 @@ pub struct HttpFibonacciServer {
     mem: Vec<i128>,
 }
 
-/*impl Service<Request<Body>> for HttpFibonacciService
-where
-    Self: 'static,
-{
-    type Response = Response<Body>;
-    type Error = http::Error;
-    type Future = Pin<Box<dyn Future<Output = Result<Self::Response, Self::Error>> + Send>>;
-
-    #[inline]
-    fn poll_ready(&mut self, _cx: &mut Context<'_>) -> Poll<Result<(), Self::Error>> {
-        Poll::Ready(Ok(()))
-    }
-
-    #[inline]
-    fn call(&mut self, req: Request<Body>) -> Self::Future {
-        Box::pin(async move {
-            let fib = self.get_fibonacci(
-                String::from_utf8(req.into_body().data().await.unwrap().unwrap().to_vec())
-                    .unwrap()
-                    .trim()
-                    .parse()
-                    .unwrap(),
-            );
-
-            Ok(Response::builder()
-                .status(StatusCode::OK)
-                .body(Body::from(format!("{}", fib)))
-                .unwrap())
-        })
-    }
-}
-
-impl HttpFibonacciService {
-    fn get_fibonacci(&mut self, index: usize) -> i128 {
-        match self.mem.get(index) {
-            Some(&number) => number,
-            None => match index {
-                0 => 0,
-                1 => 1,
-                _ => {
-                    let number = self.get_fibonacci(index - 1) + self.get_fibonacci(index - 2);
-                    self.mem.push(number);
-                    number
-                }
-            },
-        }
-    }
-}*/
-
 impl HttpFibonacciServer {
     #[inline]
     pub fn new() -> Self {
